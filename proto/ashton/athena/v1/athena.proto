@@ -32,6 +32,14 @@ message PresenceEvent {
   map<string, string> metadata = 8;
 }
 
+message IdentifiedPresenceArrived {
+  string facility_id = 1;
+  string zone_id = 2;
+  string external_identity_hash = 3;
+  PresenceSource source = 4;
+  google.protobuf.Timestamp recorded_at = 5;
+}
+
 message OccupancyState {
   string facility_id = 1;
   string zone_id = 2;

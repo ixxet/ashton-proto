@@ -229,6 +229,82 @@ func (x *PresenceEvent) GetMetadata() map[string]string {
 	return nil
 }
 
+type IdentifiedPresenceArrived struct {
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	FacilityId           string                 `protobuf:"bytes,1,opt,name=facility_id,json=facilityId,proto3" json:"facility_id,omitempty"`
+	ZoneId               string                 `protobuf:"bytes,2,opt,name=zone_id,json=zoneId,proto3" json:"zone_id,omitempty"`
+	ExternalIdentityHash string                 `protobuf:"bytes,3,opt,name=external_identity_hash,json=externalIdentityHash,proto3" json:"external_identity_hash,omitempty"`
+	Source               PresenceSource         `protobuf:"varint,4,opt,name=source,proto3,enum=ashton.athena.v1.PresenceSource" json:"source,omitempty"`
+	RecordedAt           *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=recorded_at,json=recordedAt,proto3" json:"recorded_at,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
+}
+
+func (x *IdentifiedPresenceArrived) Reset() {
+	*x = IdentifiedPresenceArrived{}
+	mi := &file_ashton_athena_v1_athena_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IdentifiedPresenceArrived) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IdentifiedPresenceArrived) ProtoMessage() {}
+
+func (x *IdentifiedPresenceArrived) ProtoReflect() protoreflect.Message {
+	mi := &file_ashton_athena_v1_athena_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IdentifiedPresenceArrived.ProtoReflect.Descriptor instead.
+func (*IdentifiedPresenceArrived) Descriptor() ([]byte, []int) {
+	return file_ashton_athena_v1_athena_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *IdentifiedPresenceArrived) GetFacilityId() string {
+	if x != nil {
+		return x.FacilityId
+	}
+	return ""
+}
+
+func (x *IdentifiedPresenceArrived) GetZoneId() string {
+	if x != nil {
+		return x.ZoneId
+	}
+	return ""
+}
+
+func (x *IdentifiedPresenceArrived) GetExternalIdentityHash() string {
+	if x != nil {
+		return x.ExternalIdentityHash
+	}
+	return ""
+}
+
+func (x *IdentifiedPresenceArrived) GetSource() PresenceSource {
+	if x != nil {
+		return x.Source
+	}
+	return PresenceSource_PRESENCE_SOURCE_UNSPECIFIED
+}
+
+func (x *IdentifiedPresenceArrived) GetRecordedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.RecordedAt
+	}
+	return nil
+}
+
 type OccupancyState struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	FacilityId    string                 `protobuf:"bytes,1,opt,name=facility_id,json=facilityId,proto3" json:"facility_id,omitempty"`
@@ -241,7 +317,7 @@ type OccupancyState struct {
 
 func (x *OccupancyState) Reset() {
 	*x = OccupancyState{}
-	mi := &file_ashton_athena_v1_athena_proto_msgTypes[1]
+	mi := &file_ashton_athena_v1_athena_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -253,7 +329,7 @@ func (x *OccupancyState) String() string {
 func (*OccupancyState) ProtoMessage() {}
 
 func (x *OccupancyState) ProtoReflect() protoreflect.Message {
-	mi := &file_ashton_athena_v1_athena_proto_msgTypes[1]
+	mi := &file_ashton_athena_v1_athena_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -266,7 +342,7 @@ func (x *OccupancyState) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OccupancyState.ProtoReflect.Descriptor instead.
 func (*OccupancyState) Descriptor() ([]byte, []int) {
-	return file_ashton_athena_v1_athena_proto_rawDescGZIP(), []int{1}
+	return file_ashton_athena_v1_athena_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *OccupancyState) GetFacilityId() string {
@@ -307,7 +383,7 @@ type GetCurrentOccupancyRequest struct {
 
 func (x *GetCurrentOccupancyRequest) Reset() {
 	*x = GetCurrentOccupancyRequest{}
-	mi := &file_ashton_athena_v1_athena_proto_msgTypes[2]
+	mi := &file_ashton_athena_v1_athena_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -319,7 +395,7 @@ func (x *GetCurrentOccupancyRequest) String() string {
 func (*GetCurrentOccupancyRequest) ProtoMessage() {}
 
 func (x *GetCurrentOccupancyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ashton_athena_v1_athena_proto_msgTypes[2]
+	mi := &file_ashton_athena_v1_athena_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -332,7 +408,7 @@ func (x *GetCurrentOccupancyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCurrentOccupancyRequest.ProtoReflect.Descriptor instead.
 func (*GetCurrentOccupancyRequest) Descriptor() ([]byte, []int) {
-	return file_ashton_athena_v1_athena_proto_rawDescGZIP(), []int{2}
+	return file_ashton_athena_v1_athena_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetCurrentOccupancyRequest) GetFacilityId() string {
@@ -358,7 +434,7 @@ type GetCurrentOccupancyResponse struct {
 
 func (x *GetCurrentOccupancyResponse) Reset() {
 	*x = GetCurrentOccupancyResponse{}
-	mi := &file_ashton_athena_v1_athena_proto_msgTypes[3]
+	mi := &file_ashton_athena_v1_athena_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -370,7 +446,7 @@ func (x *GetCurrentOccupancyResponse) String() string {
 func (*GetCurrentOccupancyResponse) ProtoMessage() {}
 
 func (x *GetCurrentOccupancyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ashton_athena_v1_athena_proto_msgTypes[3]
+	mi := &file_ashton_athena_v1_athena_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -383,7 +459,7 @@ func (x *GetCurrentOccupancyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCurrentOccupancyResponse.ProtoReflect.Descriptor instead.
 func (*GetCurrentOccupancyResponse) Descriptor() ([]byte, []int) {
-	return file_ashton_athena_v1_athena_proto_rawDescGZIP(), []int{3}
+	return file_ashton_athena_v1_athena_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetCurrentOccupancyResponse) GetOccupancy() *OccupancyState {
@@ -411,7 +487,15 @@ const file_ashton_athena_v1_athena_proto_rawDesc = "" +
 	"\bmetadata\x18\b \x03(\v2-.ashton.athena.v1.PresenceEvent.MetadataEntryR\bmetadata\x1a;\n" +
 	"\rMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xac\x01\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x82\x02\n" +
+	"\x19IdentifiedPresenceArrived\x12\x1f\n" +
+	"\vfacility_id\x18\x01 \x01(\tR\n" +
+	"facilityId\x12\x17\n" +
+	"\azone_id\x18\x02 \x01(\tR\x06zoneId\x124\n" +
+	"\x16external_identity_hash\x18\x03 \x01(\tR\x14externalIdentityHash\x128\n" +
+	"\x06source\x18\x04 \x01(\x0e2 .ashton.athena.v1.PresenceSourceR\x06source\x12;\n" +
+	"\vrecorded_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
+	"recordedAt\"\xac\x01\n" +
 	"\x0eOccupancyState\x12\x1f\n" +
 	"\vfacility_id\x18\x01 \x01(\tR\n" +
 	"facilityId\x12\x17\n" +
@@ -452,31 +536,34 @@ func file_ashton_athena_v1_athena_proto_rawDescGZIP() []byte {
 }
 
 var file_ashton_athena_v1_athena_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_ashton_athena_v1_athena_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_ashton_athena_v1_athena_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_ashton_athena_v1_athena_proto_goTypes = []any{
 	(PresenceDirection)(0),              // 0: ashton.athena.v1.PresenceDirection
 	(PresenceSource)(0),                 // 1: ashton.athena.v1.PresenceSource
 	(*PresenceEvent)(nil),               // 2: ashton.athena.v1.PresenceEvent
-	(*OccupancyState)(nil),              // 3: ashton.athena.v1.OccupancyState
-	(*GetCurrentOccupancyRequest)(nil),  // 4: ashton.athena.v1.GetCurrentOccupancyRequest
-	(*GetCurrentOccupancyResponse)(nil), // 5: ashton.athena.v1.GetCurrentOccupancyResponse
-	nil,                                 // 6: ashton.athena.v1.PresenceEvent.MetadataEntry
-	(*timestamppb.Timestamp)(nil),       // 7: google.protobuf.Timestamp
+	(*IdentifiedPresenceArrived)(nil),   // 3: ashton.athena.v1.IdentifiedPresenceArrived
+	(*OccupancyState)(nil),              // 4: ashton.athena.v1.OccupancyState
+	(*GetCurrentOccupancyRequest)(nil),  // 5: ashton.athena.v1.GetCurrentOccupancyRequest
+	(*GetCurrentOccupancyResponse)(nil), // 6: ashton.athena.v1.GetCurrentOccupancyResponse
+	nil,                                 // 7: ashton.athena.v1.PresenceEvent.MetadataEntry
+	(*timestamppb.Timestamp)(nil),       // 8: google.protobuf.Timestamp
 }
 var file_ashton_athena_v1_athena_proto_depIdxs = []int32{
 	0, // 0: ashton.athena.v1.PresenceEvent.direction:type_name -> ashton.athena.v1.PresenceDirection
 	1, // 1: ashton.athena.v1.PresenceEvent.source:type_name -> ashton.athena.v1.PresenceSource
-	7, // 2: ashton.athena.v1.PresenceEvent.recorded_at:type_name -> google.protobuf.Timestamp
-	6, // 3: ashton.athena.v1.PresenceEvent.metadata:type_name -> ashton.athena.v1.PresenceEvent.MetadataEntry
-	7, // 4: ashton.athena.v1.OccupancyState.observed_at:type_name -> google.protobuf.Timestamp
-	3, // 5: ashton.athena.v1.GetCurrentOccupancyResponse.occupancy:type_name -> ashton.athena.v1.OccupancyState
-	4, // 6: ashton.athena.v1.AthenaReadService.GetCurrentOccupancy:input_type -> ashton.athena.v1.GetCurrentOccupancyRequest
-	5, // 7: ashton.athena.v1.AthenaReadService.GetCurrentOccupancy:output_type -> ashton.athena.v1.GetCurrentOccupancyResponse
-	7, // [7:8] is the sub-list for method output_type
-	6, // [6:7] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	8, // 2: ashton.athena.v1.PresenceEvent.recorded_at:type_name -> google.protobuf.Timestamp
+	7, // 3: ashton.athena.v1.PresenceEvent.metadata:type_name -> ashton.athena.v1.PresenceEvent.MetadataEntry
+	1, // 4: ashton.athena.v1.IdentifiedPresenceArrived.source:type_name -> ashton.athena.v1.PresenceSource
+	8, // 5: ashton.athena.v1.IdentifiedPresenceArrived.recorded_at:type_name -> google.protobuf.Timestamp
+	8, // 6: ashton.athena.v1.OccupancyState.observed_at:type_name -> google.protobuf.Timestamp
+	4, // 7: ashton.athena.v1.GetCurrentOccupancyResponse.occupancy:type_name -> ashton.athena.v1.OccupancyState
+	5, // 8: ashton.athena.v1.AthenaReadService.GetCurrentOccupancy:input_type -> ashton.athena.v1.GetCurrentOccupancyRequest
+	6, // 9: ashton.athena.v1.AthenaReadService.GetCurrentOccupancy:output_type -> ashton.athena.v1.GetCurrentOccupancyResponse
+	9, // [9:10] is the sub-list for method output_type
+	8, // [8:9] is the sub-list for method input_type
+	8, // [8:8] is the sub-list for extension type_name
+	8, // [8:8] is the sub-list for extension extendee
+	0, // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_ashton_athena_v1_athena_proto_init() }
@@ -490,7 +577,7 @@ func file_ashton_athena_v1_athena_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ashton_athena_v1_athena_proto_rawDesc), len(file_ashton_athena_v1_athena_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   5,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
