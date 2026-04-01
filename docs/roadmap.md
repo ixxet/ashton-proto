@@ -24,3 +24,8 @@ Create the smallest shared contract repo that lets ATHENA start cleanly without 
 - the first ATHENA read path has a stable contract
 - event naming is fixed for the first tracer bullet
 - the repo has a clear path for later expansion without breaking the first slice
+
+## Tracer Ownership
+
+- `Tracer 1`: owns the first active contract surface for ATHENA
+- later tracers should only expand this repo when a real cross-repo slice needs it

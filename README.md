@@ -25,4 +25,14 @@ The event envelope gets locked first. Detailed payload schemas stay intentionall
 
 ## Current State
 
-Docs-first stub only. No proto layout or code generation files have been created yet.
+Bootstrap complete:
+
+- first proto layout exists
+- `buf.yaml` and `buf.gen.yaml` exist
+- the first contract files are in place
+
+See:
+
+- `docs/roadmap.md`
+- `docs/runbooks/contract-changes.md`
+- `docs/growing-pains.md`
