@@ -13,3 +13,8 @@ change scares, and the fixes that made the shared contracts more durable.
   because the package path and RPC request/response names were too loose. The
   fix was to move the contracts under `proto/ashton/...` and use method-scoped
   request and response names before calling the repo reproducible.
+
+- The first Tracer 2 schema test tried to follow the event schema `$id` over
+  HTTPS instead of loading the local shared envelope resource. The fix was to
+  preload both schema resources in the Go validation test so local contract
+  checks stay deterministic.

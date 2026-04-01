@@ -4,7 +4,7 @@ Shared contracts repo for the ASHTON platform.
 
 This repo will hold the protobuf definitions, event schemas, and MCP tool manifests that every service depends on. Nothing here should become a runnable app. Its job is to make the rest of the platform type-safe, consistent, and easier to evolve without accidental drift.
 
-This folder is intentionally docs-first right now. The implementation brief lives in [ashton-platform/planning/repo-briefs/ashton-proto.md](https://github.com/ixxet/ashton-platform/blob/main/planning/repo-briefs/ashton-proto.md).
+This repo now holds the active shared contract surface for the first cross-repo tracers. The implementation brief lives in [ashton-platform/planning/repo-briefs/ashton-proto.md](https://github.com/ixxet/ashton-platform/blob/main/planning/repo-briefs/ashton-proto.md).
 
 ## Role In The Platform
 
@@ -31,6 +31,8 @@ Tracer 1 contract hardening complete:
 - `make generate`, `make lint`, and `make check` cover the narrow contract path
 - health and ATHENA presence contracts now live under the `ashton/...` package layout Buf expects
 - generated Go packages are tracked and compile through a consumer-style import test
+- Tracer 2 adds one narrow identified-arrival event contract and JSON schema for `athena.identified_presence.arrived`
+- this repo is ready for a `v0.2.0` tracer-close tag
 
 See:
 

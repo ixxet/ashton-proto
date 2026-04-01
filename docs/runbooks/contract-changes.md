@@ -15,5 +15,6 @@ Use this runbook when a tracer needs to change shared contracts.
 ## Verification
 
 - `protoc` syntax validation passes
+- event-specific JSON Schema validation tests cover one valid payload and the required rejection cases
 - any generated config files stay coherent
 - consuming repos update in the same tracer when required
