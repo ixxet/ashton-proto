@@ -10,6 +10,7 @@ Create the smallest shared contract repo that lets ATHENA start cleanly without 
 - define the first ATHENA proto messages
 - define the standard event envelope
 - define one initial ATHENA MCP manifest
+- keep inner event payloads flexible until the first producing adapters exist
 
 ## Boundaries
 

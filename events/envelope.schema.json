@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ixxet/ashton-proto/events/envelope.schema.json",
+  "title": "AshtonEventEnvelope",
+  "type": "object",
+  "required": ["id", "source", "type", "timestamp", "data"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Event identifier for deduplication and tracing."
+    },
+    "source": {
+      "type": "string",
+      "description": "Service emitting the event, for example 'athena'."
+    },
+    "type": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+\\.[a-z0-9_]+\\.[a-z0-9_]+$",
+      "description": "Subject naming convention: service.entity.action."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "correlation_id": {
+      "type": "string",
+      "description": "Optional request or workflow correlation identifier."
+    },
+    "data": {
+      "type": "object",
+      "description": "Payload defined by the producing slice. Intentionally flexible in the first wave."
+    }
+  },
+  "additionalProperties": false
+}

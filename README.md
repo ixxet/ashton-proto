@@ -21,6 +21,8 @@ Ship the minimum contract surface needed for the first ATHENA tracer bullet:
 - one event envelope definition
 - one ATHENA MCP tool manifest
 
+The event envelope gets locked first. Detailed payload schemas stay intentionally light until the first adapter-backed slices exist.
+
 ## Current State
 
 Docs-first stub only. No proto layout or code generation files have been created yet.
