@@ -18,4 +18,9 @@ func TestGeneratedPackagesCompile(t *testing.T) {
 	if response.Occupancy == nil {
 		t.Fatal("expected athena occupancy response type to be importable")
 	}
+
+	arrival := &athenav1.IdentifiedPresenceArrived{}
+	if arrival == nil {
+		t.Fatal("expected identified presence arrival type to be importable")
+	}
 }

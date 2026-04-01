@@ -3,6 +3,7 @@ module github.com/ixxet/ashton-proto
 go 1.23.0
 
 require (
+	github.com/santhosh-tekuri/jsonschema/v6 v6.0.2
 	google.golang.org/grpc v1.75.1
 	google.golang.org/protobuf v1.36.10
 )
