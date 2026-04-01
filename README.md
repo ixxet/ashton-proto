@@ -25,11 +25,12 @@ The event envelope gets locked first. Detailed payload schemas stay intentionall
 
 ## Current State
 
-Bootstrap complete:
+Tracer 1 contract hardening complete:
 
-- first proto layout exists
-- `buf.yaml` and `buf.gen.yaml` exist
-- the first contract files are in place
+- `buf.yaml` and `buf.gen.yaml` are active and lint-clean
+- `make generate`, `make lint`, and `make check` cover the narrow contract path
+- health and ATHENA presence contracts now live under the `ashton/...` package layout Buf expects
+- generated Go packages are tracked and compile through a consumer-style import test
 
 See:
 

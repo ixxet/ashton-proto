@@ -25,6 +25,14 @@ Create the smallest shared contract repo that lets ATHENA start cleanly without 
 - event naming is fixed for the first tracer bullet
 - the repo has a clear path for later expansion without breaking the first slice
 
+## Current State
+
+Tracer 1 now has the minimum reproducible contract baseline:
+
+- Buf lint and generation pass on the narrow health and ATHENA read contracts
+- generated Go packages compile through `make check`
+- the first package layout and RPC naming rules are locked without widening payload detail
+
 ## Tracer Ownership
 
 - `Tracer 1`: owns the first active contract surface for ATHENA

@@ -7,4 +7,3 @@ bin/
 dist/
 coverage.out
 node_modules/
-gen/

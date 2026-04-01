@@ -4,7 +4,7 @@ package ashton.athena.v1;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/ixxet/ashton-proto/gen/go/athena/v1;athenav1";
+option go_package = "github.com/ixxet/ashton-proto/gen/go/ashton/athena/v1;athenav1";
 
 enum PresenceDirection {
   PRESENCE_DIRECTION_UNSPECIFIED = 0;
@@ -32,18 +32,22 @@ message PresenceEvent {
   map<string, string> metadata = 8;
 }
 
-message OccupancyRequest {
-  string facility_id = 1;
-  string zone_id = 2;
-}
-
-message OccupancySnapshot {
+message OccupancyState {
   string facility_id = 1;
   string zone_id = 2;
   int64 current_count = 3;
   google.protobuf.Timestamp observed_at = 4;
 }
 
+message GetCurrentOccupancyRequest {
+  string facility_id = 1;
+  string zone_id = 2;
+}
+
+message GetCurrentOccupancyResponse {
+  OccupancyState occupancy = 1;
+}
+
 service AthenaReadService {
-  rpc GetCurrentOccupancy(OccupancyRequest) returns (OccupancySnapshot);
+  rpc GetCurrentOccupancy(GetCurrentOccupancyRequest) returns (GetCurrentOccupancyResponse);
 }
