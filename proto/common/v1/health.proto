@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package ashton.common.v1;
+
+option go_package = "github.com/ixxet/ashton-proto/gen/go/common/v1;commonv1";
+
+message HealthCheckRequest {}
+
+message HealthCheckResponse {
+  string service = 1;
+  string status = 2;
+  string version = 3;
+}
+
+service HealthService {
+  rpc Check(HealthCheckRequest) returns (HealthCheckResponse);
+}

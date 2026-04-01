@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package ashton.athena.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/ixxet/ashton-proto/gen/go/athena/v1;athenav1";
+
+enum PresenceDirection {
+  PRESENCE_DIRECTION_UNSPECIFIED = 0;
+  PRESENCE_DIRECTION_IN = 1;
+  PRESENCE_DIRECTION_OUT = 2;
+}
+
+enum PresenceSource {
+  PRESENCE_SOURCE_UNSPECIFIED = 0;
+  PRESENCE_SOURCE_MOCK = 1;
+  PRESENCE_SOURCE_RFID = 2;
+  PRESENCE_SOURCE_TOF = 3;
+  PRESENCE_SOURCE_DATABASE = 4;
+  PRESENCE_SOURCE_CSV = 5;
+}
+
+message PresenceEvent {
+  string id = 1;
+  string facility_id = 2;
+  string zone_id = 3;
+  string external_identity_hash = 4;
+  PresenceDirection direction = 5;
+  PresenceSource source = 6;
+  google.protobuf.Timestamp recorded_at = 7;
+  map<string, string> metadata = 8;
+}
+
+message OccupancyRequest {
+  string facility_id = 1;
+  string zone_id = 2;
+}
+
+message OccupancySnapshot {
+  string facility_id = 1;
+  string zone_id = 2;
+  int64 current_count = 3;
+  google.protobuf.Timestamp observed_at = 4;
+}
+
+service AthenaReadService {
+  rpc GetCurrentOccupancy(OccupancyRequest) returns (OccupancySnapshot);
+}
