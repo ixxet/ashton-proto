@@ -32,7 +32,7 @@ Tracer 1 now has the minimum reproducible contract baseline:
 - Buf lint and generation pass on the narrow health and ATHENA read contracts
 - generated Go packages compile through `make check`
 - the first package layout and RPC naming rules are locked without widening payload detail
-- Tracer 2 extends the ATHENA contract surface with one identified-arrival event payload and one strict event schema without changing the shared envelope
+- Tracer 2 extends the ATHENA contract surface with one identified-arrival event payload, one strict event schema, and one shared runtime helper so active producers and consumers do not drift on the JSON wire shape
 
 ## Tracer Ownership
 

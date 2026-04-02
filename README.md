@@ -32,7 +32,8 @@ Tracer 1 contract hardening complete:
 - health and ATHENA presence contracts now live under the `ashton/...` package layout Buf expects
 - generated Go packages are tracked and compile through a consumer-style import test
 - Tracer 2 adds one narrow identified-arrival event contract and JSON schema for `athena.identified_presence.arrived`
-- this repo is ready for a `v0.2.0` tracer-close tag
+- Tracer 2 closure hardening adds a shared Go helper for `athena.identified_presence.arrived` so producers and consumers reuse one subject constant, one schema-backed marshal/parse path, and one fixture set
+- this repo is ready for a `v0.2.1` tracer-close tag
 
 See:
 
