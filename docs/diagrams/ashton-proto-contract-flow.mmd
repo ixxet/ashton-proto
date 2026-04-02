@@ -1,0 +1,26 @@
+flowchart LR
+  briefs["ashton-platform<br/>repo briefs and tracer rules"]
+  proto["proto/ashton/...<br/>shared protobuf contracts"]
+  schema["events/*.schema.json<br/>event envelope and payload rules"]
+  helper["events/*.go<br/>runtime marshal, parse, validate"]
+  gen["gen/go/...<br/>generated Go packages"]
+  fixtures["shared fixtures and contract tests"]
+  mcp["mcp/<br/>shared tool manifests<br/>planned expansion"]
+  athena["athena<br/>producer and contract consumer"]
+  apollo["apollo<br/>consumer and contract consumer"]
+  hermes["hermes<br/>future consumer"]
+  gateway["ashton-mcp-gateway<br/>future manifest and contract consumer"]
+
+  briefs --> proto
+  briefs --> schema
+  proto --> gen
+  proto --> helper
+  schema --> helper
+  helper --> fixtures
+  gen --> athena
+  gen --> apollo
+  helper --> athena
+  helper --> apollo
+  proto -. future surface .-> hermes
+  mcp -. future manifests .-> gateway
+  proto -. future contracts .-> gateway
