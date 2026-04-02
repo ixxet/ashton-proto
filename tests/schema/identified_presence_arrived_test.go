@@ -7,54 +7,36 @@ import (
 	"runtime"
 	"testing"
 
+	protoevents "github.com/ixxet/ashton-proto/events"
 	jsonschema "github.com/santhosh-tekuri/jsonschema/v6"
 )
 
 func TestIdentifiedPresenceArrivedSchemaAcceptsValidEnvelope(t *testing.T) {
 	schema := loadSchema(t)
 
-	event := map[string]any{
-		"id":        "mock-in-001",
-		"source":    "athena",
-		"type":      "athena.identified_presence.arrived",
-		"timestamp": "2026-04-01T12:30:00Z",
-		"data": map[string]any{
-			"facility_id":            "ashtonbee",
-			"zone_id":                "weight-room",
-			"external_identity_hash": "tag_tracer2_001",
-			"source":                 "mock",
-			"recorded_at":            "2026-04-01T12:30:00Z",
-		},
-	}
-
-	validateEvent(t, schema, event)
+	validatePayload(t, schema, protoevents.ValidIdentifiedPresenceArrivedFixture())
 }
 
 func TestIdentifiedPresenceArrivedSchemaRejectsMissingFacilityID(t *testing.T) {
 	schema := loadSchema(t)
 
-	event := validEvent()
-	delete(event["data"].(map[string]any), "facility_id")
-
-	assertValidationError(t, schema, event)
+	assertValidationError(t, schema, protoevents.MissingFacilityIDIdentifiedPresenceArrivedFixture())
 }
 
 func TestIdentifiedPresenceArrivedSchemaRejectsMissingRecordedAt(t *testing.T) {
 	schema := loadSchema(t)
 
-	event := validEvent()
+	event := validEvent(t)
 	delete(event["data"].(map[string]any), "recorded_at")
-
-	assertValidationError(t, schema, event)
+	assertValidationError(t, schema, marshalEvent(t, event))
 }
 
 func TestIdentifiedPresenceArrivedSchemaRejectsMissingExternalIdentityHash(t *testing.T) {
 	schema := loadSchema(t)
 
-	event := validEvent()
+	event := validEvent(t)
 	delete(event["data"].(map[string]any), "external_identity_hash")
-
-	assertValidationError(t, schema, event)
+	assertValidationError(t, schema, marshalEvent(t, event))
 }
 
 func loadSchema(t *testing.T) *jsonschema.Schema {
@@ -99,13 +81,8 @@ func addResource(compiler *jsonschema.Compiler, url string, path string) error {
 	return compiler.AddResource(url, doc)
 }
 
-func validateEvent(t *testing.T, schema *jsonschema.Schema, event map[string]any) {
+func validatePayload(t *testing.T, schema *jsonschema.Schema, payload []byte) {
 	t.Helper()
-
-	payload, err := json.Marshal(event)
-	if err != nil {
-		t.Fatalf("json.Marshal() error = %v", err)
-	}
 
 	var value any
 	if err := json.Unmarshal(payload, &value); err != nil {
@@ -117,13 +94,8 @@ func validateEvent(t *testing.T, schema *jsonschema.Schema, event map[string]any
 	}
 }
 
-func assertValidationError(t *testing.T, schema *jsonschema.Schema, event map[string]any) {
+func assertValidationError(t *testing.T, schema *jsonschema.Schema, payload []byte) {
 	t.Helper()
-
-	payload, err := json.Marshal(event)
-	if err != nil {
-		t.Fatalf("json.Marshal() error = %v", err)
-	}
 
 	var value any
 	if err := json.Unmarshal(payload, &value); err != nil {
@@ -135,18 +107,24 @@ func assertValidationError(t *testing.T, schema *jsonschema.Schema, event map[st
 	}
 }
 
-func validEvent() map[string]any {
-	return map[string]any{
-		"id":        "mock-in-001",
-		"source":    "athena",
-		"type":      "athena.identified_presence.arrived",
-		"timestamp": "2026-04-01T12:30:00Z",
-		"data": map[string]any{
-			"facility_id":            "ashtonbee",
-			"zone_id":                "weight-room",
-			"external_identity_hash": "tag_tracer2_001",
-			"source":                 "mock",
-			"recorded_at":            "2026-04-01T12:30:00Z",
-		},
+func validEvent(t *testing.T) map[string]any {
+	t.Helper()
+
+	var event map[string]any
+	if err := json.Unmarshal(protoevents.ValidIdentifiedPresenceArrivedFixture(), &event); err != nil {
+		t.Fatalf("json.Unmarshal() error = %v", err)
 	}
+
+	return event
+}
+
+func marshalEvent(t *testing.T, event map[string]any) []byte {
+	t.Helper()
+
+	payload, err := json.Marshal(event)
+	if err != nil {
+		t.Fatalf("json.Marshal() error = %v", err)
+	}
+
+	return payload
 }

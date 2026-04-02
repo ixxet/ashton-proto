@@ -1,0 +1,1 @@
+{"id":"mock-in-001","source":"athena","type":"athena.identified_presence.arrived","timestamp":"2026-04-01T12:30:00Z","data":{"facility_id":"ashtonbee","zone_id":"weight-room","external_identity_hash":"tag_tracer2_001","source":"mock","recorded_at":"2026-04-01T12:30:00Z"}}

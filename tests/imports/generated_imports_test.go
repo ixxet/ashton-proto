@@ -3,6 +3,7 @@ package imports_test
 import (
 	"testing"
 
+	protoevents "github.com/ixxet/ashton-proto/events"
 	athenav1 "github.com/ixxet/ashton-proto/gen/go/ashton/athena/v1"
 	commonv1 "github.com/ixxet/ashton-proto/gen/go/ashton/common/v1"
 )
@@ -22,5 +23,9 @@ func TestGeneratedPackagesCompile(t *testing.T) {
 	arrival := &athenav1.IdentifiedPresenceArrived{}
 	if arrival == nil {
 		t.Fatal("expected identified presence arrival type to be importable")
+	}
+
+	if len(protoevents.ValidIdentifiedPresenceArrivedFixture()) == 0 {
+		t.Fatal("expected identified presence fixture helper to be importable")
 	}
 }
