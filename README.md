@@ -7,8 +7,9 @@ Shared contracts repo for the ASHTON platform.
 > service repos from drifting.
 
 This repo is already part of the real executable stack. `athena` publishes the
-current identified-arrival event through the shared helper here, and `apollo`
-consumes that same helper instead of maintaining its own private JSON shape.
+current identified-arrival and identified-departure events through the shared
+helpers here, and `apollo` consumes those same helpers instead of maintaining
+its own private JSON shape.
 
 ## Why This Repo Exists
 
@@ -58,8 +59,9 @@ flowchart LR
 | Common health proto | [`proto/ashton/common/v1/health.proto`](proto/ashton/common/v1/health.proto) | Real | Shared health contract baseline |
 | ATHENA read proto | [`proto/ashton/athena/v1/athena.proto`](proto/ashton/athena/v1/athena.proto) | Real | Presence source enums, occupancy types, and the first read RPC |
 | Event envelope schema | [`events/envelope.schema.json`](events/envelope.schema.json) | Real | Shared outer event shape and subject naming discipline |
-| Identified-arrival schema | [`events/athena.identified_presence.arrived.schema.json`](events/athena.identified_presence.arrived.schema.json) | Real | First active cross-repo event payload |
-| Runtime helper | [`events/identified_presence_arrived.go`](events/identified_presence_arrived.go) | Real | Shared marshal, parse, source mapping, and timestamp validation |
+| Identified-arrival schema | [`events/athena.identified_presence.arrived.schema.json`](events/athena.identified_presence.arrived.schema.json) | Real | Active arrival event payload for visit opening |
+| Identified-departure schema | [`events/athena.identified_presence.departed.schema.json`](events/athena.identified_presence.departed.schema.json) | Real | Active departure event payload for visit closing |
+| Runtime helpers | [`events/identified_presence_arrived.go`](events/identified_presence_arrived.go), [`events/identified_presence_departed.go`](events/identified_presence_departed.go) | Real | Shared marshal, parse, source mapping, and timestamp validation |
 | Generated Go packages | `gen/go/...` | Real | Consumer import path for Go services |
 | MCP manifests | [`mcp/`](mcp/) | Planned | Shared manifest layer once routed tools become real |
 | SQL naming guidance | [`sql/naming.md`](sql/naming.md) | Real | Cross-repo relational naming conventions |
@@ -92,14 +94,17 @@ flowchart LR
 - `buf.yaml` and `buf.gen.yaml` are active and lint-clean
 - generated Go code is tracked and compile-checked through consumer-style tests
 - the first shared event envelope is locked
-- `athena.identified_presence.arrived` is defined as both schema and shared
-  runtime helper
-- shared fixture bytes and validation tests exist for the active event path
+- `athena.identified_presence.arrived` and
+  `athena.identified_presence.departed` are defined as both schema and shared
+  runtime helpers
+- shared fixture bytes and validation tests exist for the active visit
+  lifecycle event paths
 
 ### Real and active across repos
 
-- `athena` publishes the identified-arrival event through this repo's helper
-- `apollo` parses that same event through this repo's helper
+- `athena` publishes identified-arrival and identified-departure events
+  through this repo's helpers
+- `apollo` parses those same events through this repo's helpers
 - runtime timestamp and source validation now happen in one place instead of
   being recopied in each service
 

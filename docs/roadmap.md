@@ -33,9 +33,11 @@ Tracer 1 now has the minimum reproducible contract baseline:
 - generated Go packages compile through `make check`
 - the first package layout and RPC naming rules are locked without widening payload detail
 - Tracer 2 extends the ATHENA contract surface with one identified-arrival event payload, one strict event schema, and one shared runtime helper so active producers and consumers do not drift on the JSON wire shape
+- Tracer 5 extends that same lifecycle with one identified-departure event payload, one strict event schema, and one shared runtime helper so visit closing stays on the shared contract path too
 
 ## Tracer Ownership
 
 - `Tracer 1`: owns the first active contract surface for ATHENA
 - `Tracer 2`: owns the identified-arrival event contract used to turn physical presence into APOLLO visit history
+- `Tracer 5`: owns the identified-departure event contract used to close APOLLO visit history deterministically
 - later tracers should only expand this repo when a real cross-repo slice needs it
