@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1d\x61shton/athena/v1/athena.proto\x12\x10\x61shton.athena.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd1\x03\n\rPresenceEvent\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x1f\n\x0b\x66\x61\x63ility_id\x18\x02 \x01(\tR\nfacilityId\x12\x17\n\x07zone_id\x18\x03 \x01(\tR\x06zoneId\x12\x34\n\x16\x65xternal_identity_hash\x18\x04 \x01(\tR\x14\x65xternalIdentityHash\x12\x41\n\tdirection\x18\x05 \x01(\x0e\x32#.ashton.athena.v1.PresenceDirectionR\tdirection\x12\x38\n\x06source\x18\x06 \x01(\x0e\x32 .ashton.athena.v1.PresenceSourceR\x06source\x12;\n\x0brecorded_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nrecordedAt\x12I\n\x08metadata\x18\x08 \x03(\x0b\x32-.ashton.athena.v1.PresenceEvent.MetadataEntryR\x08metadata\x1a;\n\rMetadataEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"\x82\x02\n\x19IdentifiedPresenceArrived\x12\x1f\n\x0b\x66\x61\x63ility_id\x18\x01 \x01(\tR\nfacilityId\x12\x17\n\x07zone_id\x18\x02 \x01(\tR\x06zoneId\x12\x34\n\x16\x65xternal_identity_hash\x18\x03 \x01(\tR\x14\x65xternalIdentityHash\x12\x38\n\x06source\x18\x04 \x01(\x0e\x32 .ashton.athena.v1.PresenceSourceR\x06source\x12;\n\x0brecorded_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nrecordedAt\"\xac\x01\n\x0eOccupancyState\x12\x1f\n\x0b\x66\x61\x63ility_id\x18\x01 \x01(\tR\nfacilityId\x12\x17\n\x07zone_id\x18\x02 \x01(\tR\x06zoneId\x12#\n\rcurrent_count\x18\x03 \x01(\x03R\x0c\x63urrentCount\x12;\n\x0bobserved_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nobservedAt\"V\n\x1aGetCurrentOccupancyRequest\x12\x1f\n\x0b\x66\x61\x63ility_id\x18\x01 \x01(\tR\nfacilityId\x12\x17\n\x07zone_id\x18\x02 \x01(\tR\x06zoneId\"]\n\x1bGetCurrentOccupancyResponse\x12>\n\toccupancy\x18\x01 \x01(\x0b\x32 .ashton.athena.v1.OccupancyStateR\toccupancy*n\n\x11PresenceDirection\x12\"\n\x1ePRESENCE_DIRECTION_UNSPECIFIED\x10\x00\x12\x19\n\x15PRESENCE_DIRECTION_IN\x10\x01\x12\x1a\n\x16PRESENCE_DIRECTION_OUT\x10\x02*\xb5\x01\n\x0ePresenceSource\x12\x1f\n\x1bPRESENCE_SOURCE_UNSPECIFIED\x10\x00\x12\x18\n\x14PRESENCE_SOURCE_MOCK\x10\x01\x12\x18\n\x14PRESENCE_SOURCE_RFID\x10\x02\x12\x17\n\x13PRESENCE_SOURCE_TOF\x10\x03\x12\x1c\n\x18PRESENCE_SOURCE_DATABASE\x10\x04\x12\x17\n\x13PRESENCE_SOURCE_CSV\x10\x05\x32\x87\x01\n\x11\x41thenaReadService\x12r\n\x13GetCurrentOccupancy\x12,.ashton.athena.v1.GetCurrentOccupancyRequest\x1a-.ashton.athena.v1.GetCurrentOccupancyResponseB@Z>github.com/ixxet/ashton-proto/gen/go/ashton/athena/v1;athenav1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1d\x61shton/athena/v1/athena.proto\x12\x10\x61shton.athena.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd1\x03\n\rPresenceEvent\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x1f\n\x0b\x66\x61\x63ility_id\x18\x02 \x01(\tR\nfacilityId\x12\x17\n\x07zone_id\x18\x03 \x01(\tR\x06zoneId\x12\x34\n\x16\x65xternal_identity_hash\x18\x04 \x01(\tR\x14\x65xternalIdentityHash\x12\x41\n\tdirection\x18\x05 \x01(\x0e\x32#.ashton.athena.v1.PresenceDirectionR\tdirection\x12\x38\n\x06source\x18\x06 \x01(\x0e\x32 .ashton.athena.v1.PresenceSourceR\x06source\x12;\n\x0brecorded_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nrecordedAt\x12I\n\x08metadata\x18\x08 \x03(\x0b\x32-.ashton.athena.v1.PresenceEvent.MetadataEntryR\x08metadata\x1a;\n\rMetadataEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"\x82\x02\n\x19IdentifiedPresenceArrived\x12\x1f\n\x0b\x66\x61\x63ility_id\x18\x01 \x01(\tR\nfacilityId\x12\x17\n\x07zone_id\x18\x02 \x01(\tR\x06zoneId\x12\x34\n\x16\x65xternal_identity_hash\x18\x03 \x01(\tR\x14\x65xternalIdentityHash\x12\x38\n\x06source\x18\x04 \x01(\x0e\x32 .ashton.athena.v1.PresenceSourceR\x06source\x12;\n\x0brecorded_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nrecordedAt\"\x83\x02\n\x1aIdentifiedPresenceDeparted\x12\x1f\n\x0b\x66\x61\x63ility_id\x18\x01 \x01(\tR\nfacilityId\x12\x17\n\x07zone_id\x18\x02 \x01(\tR\x06zoneId\x12\x34\n\x16\x65xternal_identity_hash\x18\x03 \x01(\tR\x14\x65xternalIdentityHash\x12\x38\n\x06source\x18\x04 \x01(\x0e\x32 .ashton.athena.v1.PresenceSourceR\x06source\x12;\n\x0brecorded_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nrecordedAt\"\xac\x01\n\x0eOccupancyState\x12\x1f\n\x0b\x66\x61\x63ility_id\x18\x01 \x01(\tR\nfacilityId\x12\x17\n\x07zone_id\x18\x02 \x01(\tR\x06zoneId\x12#\n\rcurrent_count\x18\x03 \x01(\x03R\x0c\x63urrentCount\x12;\n\x0bobserved_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nobservedAt\"V\n\x1aGetCurrentOccupancyRequest\x12\x1f\n\x0b\x66\x61\x63ility_id\x18\x01 \x01(\tR\nfacilityId\x12\x17\n\x07zone_id\x18\x02 \x01(\tR\x06zoneId\"]\n\x1bGetCurrentOccupancyResponse\x12>\n\toccupancy\x18\x01 \x01(\x0b\x32 .ashton.athena.v1.OccupancyStateR\toccupancy*n\n\x11PresenceDirection\x12\"\n\x1ePRESENCE_DIRECTION_UNSPECIFIED\x10\x00\x12\x19\n\x15PRESENCE_DIRECTION_IN\x10\x01\x12\x1a\n\x16PRESENCE_DIRECTION_OUT\x10\x02*\xb5\x01\n\x0ePresenceSource\x12\x1f\n\x1bPRESENCE_SOURCE_UNSPECIFIED\x10\x00\x12\x18\n\x14PRESENCE_SOURCE_MOCK\x10\x01\x12\x18\n\x14PRESENCE_SOURCE_RFID\x10\x02\x12\x17\n\x13PRESENCE_SOURCE_TOF\x10\x03\x12\x1c\n\x18PRESENCE_SOURCE_DATABASE\x10\x04\x12\x17\n\x13PRESENCE_SOURCE_CSV\x10\x05\x32\x87\x01\n\x11\x41thenaReadService\x12r\n\x13GetCurrentOccupancy\x12,.ashton.athena.v1.GetCurrentOccupancyRequest\x1a-.ashton.athena.v1.GetCurrentOccupancyResponseB@Z>github.com/ixxet/ashton-proto/gen/go/ashton/athena/v1;athenav1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -35,22 +35,24 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._serialized_options = b'Z>github.com/ixxet/ashton-proto/gen/go/ashton/athena/v1;athenav1'
   _globals['_PRESENCEEVENT_METADATAENTRY']._loaded_options = None
   _globals['_PRESENCEEVENT_METADATAENTRY']._serialized_options = b'8\001'
-  _globals['_PRESENCEDIRECTION']._serialized_start=1171
-  _globals['_PRESENCEDIRECTION']._serialized_end=1281
-  _globals['_PRESENCESOURCE']._serialized_start=1284
-  _globals['_PRESENCESOURCE']._serialized_end=1465
+  _globals['_PRESENCEDIRECTION']._serialized_start=1433
+  _globals['_PRESENCEDIRECTION']._serialized_end=1543
+  _globals['_PRESENCESOURCE']._serialized_start=1546
+  _globals['_PRESENCESOURCE']._serialized_end=1727
   _globals['_PRESENCEEVENT']._serialized_start=85
   _globals['_PRESENCEEVENT']._serialized_end=550
   _globals['_PRESENCEEVENT_METADATAENTRY']._serialized_start=491
   _globals['_PRESENCEEVENT_METADATAENTRY']._serialized_end=550
   _globals['_IDENTIFIEDPRESENCEARRIVED']._serialized_start=553
   _globals['_IDENTIFIEDPRESENCEARRIVED']._serialized_end=811
-  _globals['_OCCUPANCYSTATE']._serialized_start=814
-  _globals['_OCCUPANCYSTATE']._serialized_end=986
-  _globals['_GETCURRENTOCCUPANCYREQUEST']._serialized_start=988
-  _globals['_GETCURRENTOCCUPANCYREQUEST']._serialized_end=1074
-  _globals['_GETCURRENTOCCUPANCYRESPONSE']._serialized_start=1076
-  _globals['_GETCURRENTOCCUPANCYRESPONSE']._serialized_end=1169
-  _globals['_ATHENAREADSERVICE']._serialized_start=1468
-  _globals['_ATHENAREADSERVICE']._serialized_end=1603
+  _globals['_IDENTIFIEDPRESENCEDEPARTED']._serialized_start=814
+  _globals['_IDENTIFIEDPRESENCEDEPARTED']._serialized_end=1073
+  _globals['_OCCUPANCYSTATE']._serialized_start=1076
+  _globals['_OCCUPANCYSTATE']._serialized_end=1248
+  _globals['_GETCURRENTOCCUPANCYREQUEST']._serialized_start=1250
+  _globals['_GETCURRENTOCCUPANCYREQUEST']._serialized_end=1336
+  _globals['_GETCURRENTOCCUPANCYRESPONSE']._serialized_start=1338
+  _globals['_GETCURRENTOCCUPANCYRESPONSE']._serialized_end=1431
+  _globals['_ATHENAREADSERVICE']._serialized_start=1730
+  _globals['_ATHENAREADSERVICE']._serialized_end=1865
 # @@protoc_insertion_point(module_scope)

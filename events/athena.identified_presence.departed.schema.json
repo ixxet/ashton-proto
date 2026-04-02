@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ixxet/ashton-proto/events/athena.identified_presence.departed.schema.json",
+  "title": "AthenaIdentifiedPresenceDepartedEvent",
+  "allOf": [
+    {
+      "$ref": "envelope.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "source": {
+          "const": "athena"
+        },
+        "type": {
+          "const": "athena.identified_presence.departed"
+        },
+        "data": {
+          "type": "object",
+          "required": [
+            "facility_id",
+            "external_identity_hash",
+            "source",
+            "recorded_at"
+          ],
+          "properties": {
+            "facility_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "zone_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "external_identity_hash": {
+              "type": "string",
+              "minLength": 1
+            },
+            "source": {
+              "type": "string",
+              "enum": [
+                "mock",
+                "rfid",
+                "tof",
+                "database",
+                "csv"
+              ]
+            },
+            "recorded_at": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  ]
+}
