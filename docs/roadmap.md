@@ -2,42 +2,40 @@
 
 ## Objective
 
-Create the smallest shared contract repo that lets ATHENA start cleanly without guessing interfaces later.
+Keep `ashton-proto` small, active, and tracer-driven so shared contracts only
+expand when a real cross-repo slice needs them.
 
-## First Implementation Slice
+## Current Line
 
-- define shared common types
-- define the first ATHENA proto messages
-- define the standard event envelope
-- define one initial ATHENA MCP manifest
-- keep inner event payloads flexible until the first producing adapters exist
+Current active line: `v0.3.1`
+
+- common shared contract baseline is real
+- ATHENA read contracts are real
+- identified arrival and departure event schemas and runtime helpers are real
+- the first real ATHENA occupancy manifest is real
+- active downstream consumers reuse shared helpers instead of private event
+  structs
+
+## Planned Release Lines
+
+| Planned tag | Intended purpose | Restrictions | What it should not do yet |
+| --- | --- | --- | --- |
+| `v0.4.0` | broader routed manifest expansion for later gateway lines | only expand when a second routed read actually lands | do not add speculative tool manifests for unreal services |
+| `v0.5.0` | later cross-repo contract expansion | only add contracts that a real tracer needs | do not turn this repo into a speculative schema dump |
 
 ## Boundaries
 
-- do not add HERMES, APOLLO, or gateway contracts beyond what is needed to keep naming and versioning coherent
-- do not create broad speculative schemas just to feel complete
-- keep versioning simple and explicit from day one
+- do not add broad speculative schemas for future repos just to feel complete
+- do not expand manifests before the routed tool surface is actually real
+- keep additive change inside the current version line when a breaking change is
+  not truly needed
+- keep runtime helpers on the active wire paths only
 
-## Exit Criteria
+## Tracer / Workstream Ownership
 
-- ATHENA can import generated contract types from this repo
-- the first ATHENA read path has a stable contract
-- event naming is fixed for the first tracer bullet
-- the repo has a clear path for later expansion without breaking the first slice
-
-## Current State
-
-Tracer 1 now has the minimum reproducible contract baseline:
-
-- Buf lint and generation pass on the narrow health and ATHENA read contracts
-- generated Go packages compile through `make check`
-- the first package layout and RPC naming rules are locked without widening payload detail
-- Tracer 2 extends the ATHENA contract surface with one identified-arrival event payload, one strict event schema, and one shared runtime helper so active producers and consumers do not drift on the JSON wire shape
-- Tracer 5 extends that same lifecycle with one identified-departure event payload, one strict event schema, and one shared runtime helper so visit closing stays on the shared contract path too
-
-## Tracer Ownership
-
-- `Tracer 1`: owns the first active contract surface for ATHENA
-- `Tracer 2`: owns the identified-arrival event contract used to turn physical presence into APOLLO visit history
-- `Tracer 5`: owns the identified-departure event contract used to close APOLLO visit history deterministically
-- later tracers should only expand this repo when a real cross-repo slice needs it
+- `Tracer 1`: first ATHENA read contract line
+- `Tracer 2`: identified-arrival event line
+- `Tracer 5`: identified-departure event line
+- `Tracer 9`: first ATHENA MCP manifest line
+- later gateway lines: broader routed manifest expansion only when those routes
+  are real

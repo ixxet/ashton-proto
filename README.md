@@ -63,19 +63,21 @@ flowchart LR
 | Identified-departure schema | [`events/athena.identified_presence.departed.schema.json`](events/athena.identified_presence.departed.schema.json) | Real | Active departure event payload for visit closing |
 | Runtime helpers | [`events/identified_presence_arrived.go`](events/identified_presence_arrived.go), [`events/identified_presence_departed.go`](events/identified_presence_departed.go) | Real | Shared marshal, parse, source mapping, and timestamp validation |
 | Generated Go packages | `gen/go/...` | Real | Consumer import path for Go services |
-| MCP manifests | [`mcp/`](mcp/) | Planned | Shared manifest layer once routed tools become real |
+| MCP manifests | [`mcp/`](mcp/) | Real, narrow | Shared manifest layer now exists for one ATHENA occupancy route |
 | SQL naming guidance | [`sql/naming.md`](sql/naming.md) | Real | Cross-repo relational naming conventions |
 
 ## Tech Stack
 
-| Layer | Technology | Status | Notes |
-| --- | --- | --- | --- |
-| Contract definition | Protobuf + Buf | Instituted | The package layout is now Buf-clean and generation is reproducible |
-| Event validation | JSON Schema 2020-12 | Instituted | Active event schemas validate the first cross-repo subject |
-| Runtime enforcement | Go helpers + explicit timestamp parsing | Instituted | Schema validation alone is not trusted for contract-critical semantics |
-| Generated consumers | Go generated code | Instituted | `athena` and `apollo` import generated packages from this repo |
-| Test discipline | Go tests + shared fixtures | Instituted | Repos should reuse shared fixture bytes instead of copying JSON strings |
-| Tool manifest layer | MCP manifests | Planned | Deliberately deferred until the first routed tool surfaces exist |
+| Layer | Technology | Status | Line | Notes |
+| --- | --- | --- | --- | --- |
+| Contract definition | Protobuf + Buf | Instituted | `v0.0.x` -> `v0.3.0` | The package layout is now Buf-clean and generation is reproducible |
+| Event validation | JSON Schema 2020-12 | Instituted | `v0.2.x` -> `v0.3.0` | Active event schemas validate the first cross-repo subjects |
+| Runtime enforcement | Go helpers + explicit timestamp parsing | Instituted | `v0.2.x` -> `v0.3.0` | Schema validation alone is not trusted for contract-critical semantics |
+| Generated consumers | Go generated code | Instituted | `v0.0.x` -> `v0.3.0` | `athena` and `apollo` import generated packages from this repo |
+| Test discipline | Go tests + shared fixtures | Instituted | `v0.0.x` -> `v0.3.0` | Repos should reuse shared fixture bytes instead of copying JSON strings |
+| Tool manifest layer | MCP manifests | Instituted | `v0.3.1` | The first real manifest line exists and stays ATHENA occupancy only at first |
+| Broader routed manifest coverage | MCP manifests + tracer-owned expansion | Planned | `v0.4.0` | Expand only when a second routed read actually lands |
+| Later contract expansion | additive proto, schema, and helper growth | Deferred | `v0.5.0` | Only widen when a real cross-repo tracer requires it |
 
 ## Ownership Rules
 
@@ -99,6 +101,8 @@ flowchart LR
   runtime helpers
 - shared fixture bytes and validation tests exist for the active visit
   lifecycle event paths
+- `mcp/athena.get_current_occupancy.json` now defines the first real shared
+  manifest-backed gateway tool line
 
 ### Real and active across repos
 
@@ -110,15 +114,34 @@ flowchart LR
 
 ### Planned next
 
+The planned release lines below are the authoritative expansion path. These
+bullets are only the short summary.
+
 - expand contract surfaces only when a real tracer requires them
-- add broader proto and manifest coverage for `apollo`, `hermes`, and the
-  gateway once their first executable slices exist
+- add broader proto and manifest coverage for `apollo`, `hermes`, and later
+  gateway routes only when those executable slices are real
 
 ### Deferred on purpose
 
 - broad speculative schemas for features that do not yet have a tracer
 - gateway-wide manifest expansion before any routed tool is real
 - version churn for changes that are still additive inside the current surface
+
+## Release History
+
+| Release line | Exact tags | Status | What became real | What stayed deferred |
+| --- | --- | --- | --- | --- |
+| `v0.0.x` | `v0.0.1` | Shipped | common scaffold, Buf baseline, generated Go path | active cross-repo event lines and manifests |
+| `v0.1.x` | `v0.1.0` | Shipped | first ATHENA read contract line | lifecycle events and manifests |
+| `v0.2.x` | `v0.2.0`, `v0.2.1` | Shipped | identified-arrival event schema and shared helper line | departure contract and manifests |
+| `v0.3.0` | `v0.3.0` | Shipped | identified-departure event schema and shared helper line | MCP manifest runtime remains deferred |
+
+## Planned Release Lines
+
+| Planned tag | Intended purpose | Restrictions | What it should not do yet |
+| --- | --- | --- | --- |
+| `v0.4.0` | broader routed manifest expansion for later gateway lines | expand only when a second routed read actually exists | do not add speculative manifests for unreal service routes |
+| `v0.5.0` | later cross-repo contract expansion only when a real tracer needs it | stay tracer-driven and additive where possible | do not turn this repo into a speculative schema dump |
 
 ## Versioning And Drift Prevention
 
@@ -137,7 +160,7 @@ flowchart LR
 | `proto/` | shared protobuf contracts |
 | `events/` | event schemas, helper code, and fixtures |
 | `gen/` | generated language bindings |
-| `mcp/` | future shared manifest layer |
+| `mcp/` | shared manifest layer for routed gateway tools |
 | `tests/` | contract import and schema validation checks |
 | `docs/` | roadmap, runbook, ADR index, growing-pains log, and diagrams |
 
