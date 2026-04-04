@@ -11,12 +11,29 @@ current identified-arrival and identified-departure events through the shared
 helpers here, and `apollo` consumes those same helpers instead of maintaining
 its own private JSON shape.
 
+## Status Legend
+
+| Label | Meaning |
+| --- | --- |
+| `Shipped` | a git tag exists and represents the released repo line |
+| `Unreleased on main` | the code and docs are present on `main`, but no matching git tag exists yet |
+| `Planned` | documented future work only |
+
+Current as of `2026-04-04`:
+
+- latest shipped tag: `v0.3.0`
+- current unreleased working line on `main`: `v0.3.1`
+- next planned line after that: `v0.4.0`
+
 ## Why This Repo Exists
 
 `ashton-proto` exists so the platform can stay contract-first without stopping
 at documentation theater. The current goal is not to create a giant speculative
 schema catalog. The goal is to keep the real active surface small, versioned,
 and reusable across repos.
+
+In ASHTON, a `tracer` is one narrow cross-repo implementation slice. This repo
+should only widen when a real tracer needs a shared contract.
 
 ## Architecture
 
@@ -75,7 +92,7 @@ flowchart LR
 | Runtime enforcement | Go helpers + explicit timestamp parsing | Instituted | `v0.2.x` -> `v0.3.0` | Schema validation alone is not trusted for contract-critical semantics |
 | Generated consumers | Go generated code | Instituted | `v0.0.x` -> `v0.3.0` | `athena` and `apollo` import generated packages from this repo |
 | Test discipline | Go tests + shared fixtures | Instituted | `v0.0.x` -> `v0.3.0` | Repos should reuse shared fixture bytes instead of copying JSON strings |
-| Tool manifest layer | MCP manifests | Instituted | `v0.3.1` | The first real manifest line exists and stays ATHENA occupancy only at first |
+| Tool manifest layer | MCP manifests | Unreleased on `main` | `v0.3.1` | The first real manifest line exists on `main` and stays ATHENA occupancy only at first |
 | Broader routed manifest coverage | MCP manifests + tracer-owned expansion | Planned | `v0.4.0` | Expand only when a second routed read actually lands |
 | Later contract expansion | additive proto, schema, and helper growth | Deferred | `v0.5.0` | Only widen when a real cross-repo tracer requires it |
 
@@ -134,7 +151,8 @@ bullets are only the short summary.
 | `v0.0.x` | `v0.0.1` | Shipped | common scaffold, Buf baseline, generated Go path | active cross-repo event lines and manifests |
 | `v0.1.x` | `v0.1.0` | Shipped | first ATHENA read contract line | lifecycle events and manifests |
 | `v0.2.x` | `v0.2.0`, `v0.2.1` | Shipped | identified-arrival event schema and shared helper line | departure contract and manifests |
-| `v0.3.0` | `v0.3.0` | Shipped | identified-departure event schema and shared helper line | MCP manifest runtime remains deferred |
+| `v0.3.0` | `v0.3.0` | Shipped | identified-departure event schema and shared helper line | MCP manifest runtime remained deferred at release time |
+| `v0.3.1` | - | Unreleased on `main` | first ATHENA occupancy manifest line | broader routed manifest expansion |
 
 ## Planned Release Lines
 
@@ -151,6 +169,7 @@ bullets are only the short summary.
 | Producer and consumer drift | Use shared runtime helpers, not repo-local JSON structs |
 | Timestamp and enum validation | Keep schema validation, then parse contract-critical values explicitly in runtime code |
 | Test fixtures | Generate or reuse shared bytes from `ashton-proto` instead of duplicating hand-written payloads downstream |
+| Released vs working line | Say `Shipped` only when a matching git tag exists; otherwise say `Unreleased on main` |
 | Contract expansion | Tie it to tracer scope so the repo stays small and defensible |
 
 ## Project Structure

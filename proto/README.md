@@ -1,11 +1,21 @@
 # Proto
 
-This directory will hold shared protobuf definitions.
+This directory holds the shared protobuf definitions that are already active in
+the ASHTON stack.
 
-First-wave scope:
+Current inventory:
 
-- common shared types
-- the first ATHENA-facing contract surfaces
-- package layout rooted under `ashton/...` so Buf lint and consumer imports stay aligned
+- `ashton/common/v1/health.proto`
+  - common health response baseline
+- `ashton/athena/v1/athena.proto`
+  - occupancy read request and response
+  - presence source enums
+  - shared ATHENA event-related message shapes and enums
 
-Do not expand into broad speculative schemas before the first producing and consuming slices exist.
+Rules for this directory:
+
+- keep package layout rooted under `ashton/...` so Buf lint and generated
+  imports stay aligned
+- add proto only when a real tracer needs a shared contract
+- do not turn this directory into a speculative schema catalog for unreal
+  services

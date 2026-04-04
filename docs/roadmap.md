@@ -7,12 +7,14 @@ expand when a real cross-repo slice needs them.
 
 ## Current Line
 
-Current active line: `v0.3.1`
+Current shipped line: `v0.3.0`
+
+Current unreleased working line on `main`: `v0.3.1`
 
 - common shared contract baseline is real
 - ATHENA read contracts are real
 - identified arrival and departure event schemas and runtime helpers are real
-- the first real ATHENA occupancy manifest is real
+- the first real ATHENA occupancy manifest is real on `main`
 - active downstream consumers reuse shared helpers instead of private event
   structs
 

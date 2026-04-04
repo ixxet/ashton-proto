@@ -1,8 +1,9 @@
 # MCP
 
-This directory holds shared MCP tool manifest definitions.
+This directory holds the shared MCP-style tool manifest layer for routed gateway
+tools.
 
-First-wave scope:
+Current inventory:
 
 - [`athena.get_current_occupancy.json`](athena.get_current_occupancy.json)
   - source service: `athena`
@@ -10,5 +11,14 @@ First-wave scope:
   - required input: `facility_id`
   - read-only: `true`
 
-Write-path manifests and broader gateway-facing tool expansion are deferred
-until the first read slices are real.
+Current status:
+
+- real on `main`
+- not yet part of a shipped tag
+- intentionally limited to one read-only ATHENA route
+
+Rules for this directory:
+
+- add a manifest only when a real routed tool exists
+- do not add speculative write manifests before approval runtime exists
+- keep manifest expansion tracer-driven, just like proto and event growth

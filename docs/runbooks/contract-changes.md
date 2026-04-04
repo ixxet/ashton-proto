@@ -15,6 +15,17 @@ Use this runbook when a tracer needs to change shared contracts.
   helper or validator in `ashton-proto` and have both producer and consumer
   import it instead of defining private wire structs
 
+## Maintainer Decision Guide
+
+| If the change is... | Update proto | Update event schema | Update Go helper | Update MCP manifest | Cut a tag now? |
+| --- | --- | --- | --- | --- | --- |
+| new HTTP or RPC request/response type shared across repos | Yes | No | Usually no | Only if the gateway consumes it | Only when a downstream repo now depends on the released contract |
+| new event payload shared across producer and consumer repos | Maybe | Yes | Yes | No | Yes if producer or consumer expects the new contract from a released line |
+| new enum or field added to an active proto surface | Yes | Maybe | Maybe | Maybe | Yes if a downstream released repo needs it; otherwise keep it additive on `main` |
+| stricter event validation without changing the outer shape | No | Yes | Yes | No | Tag if downstream repos or hardening artifacts now depend on that stricter behavior |
+| new routed read-only tool for the gateway | Maybe | No | No | Yes | Tag if the gateway or service repo consumes the manifest from a released line |
+| docs-only clarification of current vs planned state | No | No | No | No | No |
+
 ## Verification
 
 - `protoc` syntax validation passes

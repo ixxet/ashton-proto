@@ -1,11 +1,26 @@
 # Events
 
-This directory holds shared event schemas for the ASHTON platform.
+This directory holds the shared event contracts that are already active in the
+ASHTON stack.
 
-First rule: lock the envelope before locking detailed payloads.
+Current inventory:
 
-For the first implementation wave:
+- `envelope.schema.json`
+  - shared outer event shape
+- `athena.identified_presence.arrived.schema.json`
+  - active arrival payload schema
+- `athena.identified_presence.departed.schema.json`
+  - active departure payload schema
+- `identified_presence_arrived.go`
+  - shared marshal, parse, source mapping, and timestamp validation for arrival
+- `identified_presence_departed.go`
+  - shared marshal, parse, source mapping, and timestamp validation for departure
+- fixture files and tests
+  - valid bytes and rejection cases for the current active subjects
 
-- lock the standard envelope
-- lock subject naming convention
-- keep the `data` payload flexible until real producing slices exist
+Rules for this directory:
+
+- lock the envelope before widening payload detail
+- keep subject naming in `{service}.{entity}.{action}` form
+- when an event becomes active across repos, add one shared helper here and
+  make both producer and consumer import it
