@@ -24,3 +24,6 @@ Rules for this directory:
 - keep subject naming in `{service}.{entity}.{action}` form
 - when an event becomes active across repos, add one shared helper here and
   make both producer and consumer import it
+- adding or breaking an externally consumed event/helper surface here is a
+  pre-`1.0.0` `MINOR` change, not a `PATCH`
+- docs, tests, and non-breaking validation/tooling fixes here are `PATCH` work

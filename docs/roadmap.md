@@ -18,6 +18,13 @@ Current unreleased working line on `main`: `v0.3.1`
 - active downstream consumers reuse shared helpers instead of private event
   structs
 
+`v0.3.1` stays unreleased until the first manifest-backed line is explicitly
+stable enough to tag:
+
+- manifest semantics are intentionally supported for that line
+- `buf generate` stays reproducible and leaves the tree clean
+- manifest tests cover the narrow supported surface, not only happy-path keys
+
 ## Planned Release Lines
 
 | Planned tag | Intended purpose | Restrictions | What it should not do yet |
@@ -29,8 +36,9 @@ Current unreleased working line on `main`: `v0.3.1`
 
 - do not add broad speculative schemas for future repos just to feel complete
 - do not expand manifests before the routed tool surface is actually real
-- keep additive change inside the current version line when a breaking change is
-  not truly needed
+- treat this repo as formal pre-`1.0.0` semver now: `PATCH` for non-breaking
+  clarifications and tooling, `MINOR` for any externally consumed shared
+  contract or manifest addition or breaking change
 - keep runtime helpers on the active wire paths only
 
 ## Tracer / Workstream Ownership

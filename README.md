@@ -19,11 +19,18 @@ its own private JSON shape.
 | `Unreleased on main` | the code and docs are present on `main`, but no matching git tag exists yet |
 | `Planned` | documented future work only |
 
-Current as of `2026-04-04`:
+Current as of `2026-04-08`:
 
 - latest shipped tag: `v0.3.0`
 - current unreleased working line on `main`: `v0.3.1`
 - next planned line after that: `v0.4.0`
+
+`v0.3.1` stays unreleased on `main` until the first manifest-backed line is
+explicitly stable enough to tag:
+
+- manifest semantics are intentionally supported for this line
+- regeneration stays clean after `buf generate`
+- manifest tests cover the narrow supported contract, not only happy-path keys
 
 ## Why This Repo Exists
 
@@ -48,11 +55,11 @@ flowchart LR
   helper["events/*.go<br/>runtime marshal, parse, validate"]
   gen["gen/go/...<br/>generated Go packages"]
   fixtures["shared fixtures and contract tests"]
-  mcp["mcp/<br/>shared tool manifests<br/>planned expansion"]
+  mcp["mcp/<br/>shared tool manifests<br/>first ATHENA manifest real on main"]
   athena["athena<br/>producer and contract consumer"]
   apollo["apollo<br/>consumer and contract consumer"]
   hermes["hermes<br/>future consumer"]
-  gateway["ashton-mcp-gateway<br/>future manifest and contract consumer"]
+  gateway["ashton-mcp-gateway<br/>current narrow manifest consumer on main<br/>broader future consumer later"]
 
   briefs --> proto
   briefs --> schema
@@ -65,7 +72,7 @@ flowchart LR
   helper --> athena
   helper --> apollo
   proto -. future surface .-> hermes
-  mcp -. future manifests .-> gateway
+  mcp --> gateway
   proto -. future contracts .-> gateway
 ```
 
@@ -80,6 +87,7 @@ flowchart LR
 | Identified-departure schema | [`events/athena.identified_presence.departed.schema.json`](events/athena.identified_presence.departed.schema.json) | Real | Active departure event payload for visit closing |
 | Runtime helpers | [`events/identified_presence_arrived.go`](events/identified_presence_arrived.go), [`events/identified_presence_departed.go`](events/identified_presence_departed.go) | Real | Shared marshal, parse, source mapping, and timestamp validation |
 | Generated Go packages | `gen/go/...` | Real | Consumer import path for Go services |
+| Generated Python bindings | `gen/python/...` | Generated, not yet a supported release surface | Present in the repo, but compatibility promises are Go-first today |
 | MCP manifests | [`mcp/`](mcp/) | Real, narrow | Shared manifest layer now exists for one ATHENA occupancy route |
 | SQL naming guidance | [`sql/naming.md`](sql/naming.md) | Real | Cross-repo relational naming conventions |
 
@@ -165,11 +173,14 @@ bullets are only the short summary.
 
 | Concern | Current Decision |
 | --- | --- |
-| Breaking changes | Avoid them while the active surface is still narrow; add new versions only when a real incompatibility exists |
+| Pre-`1.0.0` rule | Treat this repo as formal pre-`1.0.0` semver now: `PATCH` for docs, tests, tooling, and non-breaking clarifications; `MINOR` for any externally consumed proto, event, helper, manifest, or generated-surface addition or breaking change |
+| Breaking changes | Do not hide them in a patch; before `1.0.0`, a breaking shared-contract change still requires a new `MINOR` line |
 | Producer and consumer drift | Use shared runtime helpers, not repo-local JSON structs |
 | Timestamp and enum validation | Keep schema validation, then parse contract-critical values explicitly in runtime code |
 | Test fixtures | Generate or reuse shared bytes from `ashton-proto` instead of duplicating hand-written payloads downstream |
 | Released vs working line | Say `Shipped` only when a matching git tag exists; otherwise say `Unreleased on main` |
+| Release gate for `v0.3.1` | Tag it only when the first manifest-backed contract line is intentionally supported, reproducible, and test-covered enough to behave like a real shared surface |
+| Supported generated bindings | Generated Go packages are the supported release surface today; other generated bindings are present but not yet separately compatibility-promised |
 | Contract expansion | Tie it to tracer scope so the repo stays small and defensible |
 
 ## Project Structure
