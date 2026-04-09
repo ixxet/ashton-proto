@@ -19,14 +19,14 @@ its own private JSON shape.
 | `Working line` | the repo currently carries this line, but a matching tag may or may not exist yet |
 | `Planned` | documented future work only |
 
-Current as of `2026-04-08`:
+Current as of `2026-04-09`:
 
-- latest shipped tag: `v0.3.0`
+- latest shipped tag: `v0.4.0`
 - current Tracer 15 contract line: `v0.4.0`
 - next planned line after that: `v0.5.0`
 
-`v0.4.0` is the current manifest-widening line and should stay intentionally
-small until it is stable enough to tag:
+`v0.4.0` is the current manifest-widening line and stays intentionally small
+after release:
 
 - manifest semantics are intentionally supported for this line
 - regeneration stays clean after `buf generate`
@@ -162,7 +162,7 @@ bullets are only the short summary.
 | `v0.2.x` | `v0.2.0`, `v0.2.1` | Shipped | identified-arrival event schema and shared helper line | departure contract and manifests |
 | `v0.3.0` | `v0.3.0` | Shipped | identified-departure event schema and shared helper line | MCP manifest runtime remained deferred at release time |
 | `v0.3.1` | - | Historical working line | first ATHENA occupancy manifest line | broader routed manifest expansion |
-| `v0.4.0` | - | Current Tracer 15 contract line | second ATHENA occupancy manifest line for gateway routing honesty | later routed manifest and broader contract expansion |
+| `v0.4.0` | `v0.4.0` | Current Tracer 15 shipped contract line | second ATHENA occupancy manifest line for gateway routing honesty | later routed manifest and broader contract expansion |
 
 ## Planned Release Lines
 

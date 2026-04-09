@@ -7,9 +7,9 @@ expand when a real cross-repo slice needs them.
 
 ## Current Line
 
-Current shipped line: `v0.3.0`
+Current shipped line: `v0.4.0`
 
-Current working line: `v0.4.0`
+Current released line: `v0.4.0`
 
 - common shared contract baseline is real
 - ATHENA read contracts are real
