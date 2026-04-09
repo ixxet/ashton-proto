@@ -100,7 +100,7 @@ flowchart LR
 | Runtime enforcement | Go helpers + explicit timestamp parsing | Instituted | `v0.2.x` -> `v0.3.0` | Schema validation alone is not trusted for contract-critical semantics |
 | Generated consumers | Go generated code | Instituted | `v0.0.x` -> `v0.3.0` | `athena` and `apollo` import generated packages from this repo |
 | Test discipline | Go tests + shared fixtures | Instituted | `v0.0.x` -> `v0.3.0` | Repos should reuse shared fixture bytes instead of copying JSON strings |
-| Tool manifest layer | MCP manifests | Working line | `v0.3.1` -> `v0.4.0` | The first manifest-backed line now widens to two real ATHENA occupancy routes without speculative service drift |
+| Tool manifest layer | MCP manifests | Shipped | `v0.3.1` -> `v0.4.0` | The first manifest-backed line now widens to two real ATHENA occupancy routes without speculative service drift |
 | Later routed manifest coverage | MCP manifests + tracer-owned expansion | Planned | later than `v0.4.0` | Expand only when another real routed read actually lands |
 | Later contract expansion | additive proto, schema, and helper growth | Deferred | `v0.5.0` | Only widen when a real cross-repo tracer requires it |
 

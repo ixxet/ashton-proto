@@ -14,12 +14,11 @@ Current released line: `v0.4.0`
 - common shared contract baseline is real
 - ATHENA read contracts are real
 - identified arrival and departure event schemas and runtime helpers are real
-- two real ATHENA occupancy manifests are present in the current working line
+- two real ATHENA occupancy manifests are present in the current released line
 - active downstream consumers reuse shared helpers instead of private event
   structs
 
-`v0.4.0` stays intentionally narrow until the second manifest-backed line is
-explicitly stable enough to tag:
+`v0.4.0` stays intentionally narrow after release:
 
 - manifest semantics are intentionally supported for that line
 - `buf generate` stays reproducible and leaves the tree clean
