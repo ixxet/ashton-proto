@@ -1,0 +1,30 @@
+{
+  "name": "athena.get_current_zone_occupancy",
+  "description": "Read the current occupancy count for a specific facility zone through ATHENA's public occupancy endpoint.",
+  "read_only": true,
+  "input": {
+    "required": [
+      "facility_id",
+      "zone_id"
+    ],
+    "properties": {
+      "facility_id": {
+        "type": "string",
+        "description": "ATHENA facility identifier."
+      },
+      "zone_id": {
+        "type": "string",
+        "description": "ATHENA zone identifier."
+      }
+    }
+  },
+  "upstream": {
+    "service": "athena",
+    "method": "GET",
+    "path": "/api/v1/presence/count",
+    "query": {
+      "facility": "facility_id",
+      "zone": "zone_id"
+    }
+  }
+}

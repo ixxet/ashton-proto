@@ -9,17 +9,17 @@ expand when a real cross-repo slice needs them.
 
 Current shipped line: `v0.3.0`
 
-Current unreleased working line on `main`: `v0.3.1`
+Current working line: `v0.4.0`
 
 - common shared contract baseline is real
 - ATHENA read contracts are real
 - identified arrival and departure event schemas and runtime helpers are real
-- the first real ATHENA occupancy manifest is real on `main`
+- two real ATHENA occupancy manifests are present in the current working line
 - active downstream consumers reuse shared helpers instead of private event
   structs
 
-`v0.3.1` stays unreleased until the first manifest-backed line is explicitly
-stable enough to tag:
+`v0.4.0` stays intentionally narrow until the second manifest-backed line is
+explicitly stable enough to tag:
 
 - manifest semantics are intentionally supported for that line
 - `buf generate` stays reproducible and leaves the tree clean
@@ -29,7 +29,6 @@ stable enough to tag:
 
 | Planned tag | Intended purpose | Restrictions | What it should not do yet |
 | --- | --- | --- | --- |
-| `v0.4.0` | broader routed manifest expansion for later gateway lines | only expand when a second routed read actually lands | do not add speculative tool manifests for unreal services |
 | `v0.5.0` | later cross-repo contract expansion | only add contracts that a real tracer needs | do not turn this repo into a speculative schema dump |
 
 ## Boundaries
@@ -47,5 +46,5 @@ stable enough to tag:
 - `Tracer 2`: identified-arrival event line
 - `Tracer 5`: identified-departure event line
 - `Tracer 9`: first ATHENA MCP manifest line
-- later gateway lines: broader routed manifest expansion only when those routes
-  are real
+- `Tracer 15`: second ATHENA MCP manifest line for caller-aware audited gateway routing
+- later gateway lines: broader routed manifest expansion only when those routes are real

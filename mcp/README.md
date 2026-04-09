@@ -10,12 +10,17 @@ Current inventory:
   - route target: `GET /api/v1/presence/count`
   - required input: `facility_id`
   - read-only: `true`
+- [`athena.get_current_zone_occupancy.json`](athena.get_current_zone_occupancy.json)
+  - source service: `athena`
+  - route target: `GET /api/v1/presence/count`
+  - required inputs: `facility_id`, `zone_id`
+  - read-only: `true`
 
 Current status:
 
-- real on `main`
-- not yet part of a shipped tag
-- intentionally limited to one read-only ATHENA route
+- present in the current working line
+- still intentionally smaller than a broad shared tool catalog
+- intentionally limited to two read-only ATHENA routes
 
 Rules for this directory:
 

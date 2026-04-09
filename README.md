@@ -16,17 +16,17 @@ its own private JSON shape.
 | Label | Meaning |
 | --- | --- |
 | `Shipped` | a git tag exists and represents the released repo line |
-| `Unreleased on main` | the code and docs are present on `main`, but no matching git tag exists yet |
+| `Working line` | the repo currently carries this line, but a matching tag may or may not exist yet |
 | `Planned` | documented future work only |
 
 Current as of `2026-04-08`:
 
 - latest shipped tag: `v0.3.0`
-- current unreleased working line on `main`: `v0.3.1`
-- next planned line after that: `v0.4.0`
+- current Tracer 15 contract line: `v0.4.0`
+- next planned line after that: `v0.5.0`
 
-`v0.3.1` stays unreleased on `main` until the first manifest-backed line is
-explicitly stable enough to tag:
+`v0.4.0` is the current manifest-widening line and should stay intentionally
+small until it is stable enough to tag:
 
 - manifest semantics are intentionally supported for this line
 - regeneration stays clean after `buf generate`
@@ -55,11 +55,11 @@ flowchart LR
   helper["events/*.go<br/>runtime marshal, parse, validate"]
   gen["gen/go/...<br/>generated Go packages"]
   fixtures["shared fixtures and contract tests"]
-  mcp["mcp/<br/>shared tool manifests<br/>first ATHENA manifest real on main"]
+  mcp["mcp/<br/>shared tool manifests<br/>two ATHENA manifests real"]
   athena["athena<br/>producer and contract consumer"]
   apollo["apollo<br/>consumer and contract consumer"]
   hermes["hermes<br/>future consumer"]
-  gateway["ashton-mcp-gateway<br/>current narrow manifest consumer on main<br/>broader future consumer later"]
+  gateway["ashton-mcp-gateway<br/>current narrow manifest consumer<br/>broader future consumer later"]
 
   briefs --> proto
   briefs --> schema
@@ -88,7 +88,7 @@ flowchart LR
 | Runtime helpers | [`events/identified_presence_arrived.go`](events/identified_presence_arrived.go), [`events/identified_presence_departed.go`](events/identified_presence_departed.go) | Real | Shared marshal, parse, source mapping, and timestamp validation |
 | Generated Go packages | `gen/go/...` | Real | Consumer import path for Go services |
 | Generated Python bindings | `gen/python/...` | Generated, not yet a supported release surface | Present in the repo, but compatibility promises are Go-first today |
-| MCP manifests | [`mcp/`](mcp/) | Real, narrow | Shared manifest layer now exists for one ATHENA occupancy route |
+| MCP manifests | [`mcp/`](mcp/) | Real, narrow | Shared manifest layer now exists for two ATHENA occupancy routes |
 | SQL naming guidance | [`sql/naming.md`](sql/naming.md) | Real | Cross-repo relational naming conventions |
 
 ## Tech Stack
@@ -100,8 +100,8 @@ flowchart LR
 | Runtime enforcement | Go helpers + explicit timestamp parsing | Instituted | `v0.2.x` -> `v0.3.0` | Schema validation alone is not trusted for contract-critical semantics |
 | Generated consumers | Go generated code | Instituted | `v0.0.x` -> `v0.3.0` | `athena` and `apollo` import generated packages from this repo |
 | Test discipline | Go tests + shared fixtures | Instituted | `v0.0.x` -> `v0.3.0` | Repos should reuse shared fixture bytes instead of copying JSON strings |
-| Tool manifest layer | MCP manifests | Unreleased on `main` | `v0.3.1` | The first real manifest line exists on `main` and stays ATHENA occupancy only at first |
-| Broader routed manifest coverage | MCP manifests + tracer-owned expansion | Planned | `v0.4.0` | Expand only when a second routed read actually lands |
+| Tool manifest layer | MCP manifests | Working line | `v0.3.1` -> `v0.4.0` | The first manifest-backed line now widens to two real ATHENA occupancy routes without speculative service drift |
+| Later routed manifest coverage | MCP manifests + tracer-owned expansion | Planned | later than `v0.4.0` | Expand only when another real routed read actually lands |
 | Later contract expansion | additive proto, schema, and helper growth | Deferred | `v0.5.0` | Only widen when a real cross-repo tracer requires it |
 
 ## Ownership Rules
@@ -126,8 +126,9 @@ flowchart LR
   runtime helpers
 - shared fixture bytes and validation tests exist for the active visit
   lifecycle event paths
-- `mcp/athena.get_current_occupancy.json` now defines the first real shared
-  manifest-backed gateway tool line
+- `mcp/athena.get_current_occupancy.json` and
+  `mcp/athena.get_current_zone_occupancy.json` now define the first two real
+  shared manifest-backed gateway tool lines
 
 ### Real and active across repos
 
@@ -160,13 +161,13 @@ bullets are only the short summary.
 | `v0.1.x` | `v0.1.0` | Shipped | first ATHENA read contract line | lifecycle events and manifests |
 | `v0.2.x` | `v0.2.0`, `v0.2.1` | Shipped | identified-arrival event schema and shared helper line | departure contract and manifests |
 | `v0.3.0` | `v0.3.0` | Shipped | identified-departure event schema and shared helper line | MCP manifest runtime remained deferred at release time |
-| `v0.3.1` | - | Unreleased on `main` | first ATHENA occupancy manifest line | broader routed manifest expansion |
+| `v0.3.1` | - | Historical working line | first ATHENA occupancy manifest line | broader routed manifest expansion |
+| `v0.4.0` | - | Current Tracer 15 contract line | second ATHENA occupancy manifest line for gateway routing honesty | later routed manifest and broader contract expansion |
 
 ## Planned Release Lines
 
 | Planned tag | Intended purpose | Restrictions | What it should not do yet |
 | --- | --- | --- | --- |
-| `v0.4.0` | broader routed manifest expansion for later gateway lines | expand only when a second routed read actually exists | do not add speculative manifests for unreal service routes |
 | `v0.5.0` | later cross-repo contract expansion only when a real tracer needs it | stay tracer-driven and additive where possible | do not turn this repo into a speculative schema dump |
 
 ## Versioning And Drift Prevention
@@ -178,8 +179,8 @@ bullets are only the short summary.
 | Producer and consumer drift | Use shared runtime helpers, not repo-local JSON structs |
 | Timestamp and enum validation | Keep schema validation, then parse contract-critical values explicitly in runtime code |
 | Test fixtures | Generate or reuse shared bytes from `ashton-proto` instead of duplicating hand-written payloads downstream |
-| Released vs working line | Say `Shipped` only when a matching git tag exists; otherwise say `Unreleased on main` |
-| Release gate for `v0.3.1` | Tag it only when the first manifest-backed contract line is intentionally supported, reproducible, and test-covered enough to behave like a real shared surface |
+| Released vs working line | Say `Shipped` only when a matching git tag exists; otherwise use `Working line` wording |
+| Release gate for `v0.4.0` | Tag it only when the two-manifest routed contract line is intentionally supported, reproducible, and test-covered enough to behave like a real shared surface |
 | Supported generated bindings | Generated Go packages are the supported release surface today; other generated bindings are present but not yet separately compatibility-promised |
 | Contract expansion | Tie it to tracer scope so the repo stays small and defensible |
 
